@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { UsingHookForm } from "./components/hook-form-only/UsingHookForm.component";
+import { Navigator } from "./components/navigator/Navigator.component";
+import { YupOnly } from "./components/yup-only/YupOnly.component";
+import { YupAndHookform } from "./components/yup-and-hook-form/YupAndHookform.component";
 
 function App() {
+  const [activeClass, setActiveClass] = useState("hookForm");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-black min-h-screen text-white p-4">
+      <h1 className="text-3xl text-center font-semibold pb-8">
+        Form Validation Using React-Hook-Form and Yup
+      </h1>
+      <Navigator activeClass={activeClass} setActiveClass={setActiveClass} />
+      {activeClass === "hookForm" ? <UsingHookForm /> : ""}
+      {activeClass === "yup" ? <YupOnly /> : ""}
+      {activeClass === "yupAndHookform" ? <YupAndHookform /> : ""}
     </div>
   );
 }
